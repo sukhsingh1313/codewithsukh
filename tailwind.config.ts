@@ -10,14 +10,17 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Theme-aware dynamic CSS variables
-        "bg-primary": "var(--bg-primary)",
-        "bg-secondary": "var(--bg-secondary)",
-        "card-bg": "var(--card-bg)",
-        "accent-primary": "var(--accent-primary)",
-        "accent-secondary": "var(--accent-secondary)",
-        "text-primary": "var(--text-primary)",
-        "text-muted": "var(--text-muted)",
+        // Theme-aware dynamic CSS variable mappings
+        theme: {
+          main: "var(--bg-primary)",
+          secondary: "var(--bg-secondary)",
+          card: "var(--card-bg)",
+        },
+        "text-theme": {
+          main: "var(--text-primary)",
+          muted: "var(--text-muted)",
+        },
+        "accent-theme": "var(--accent-primary)",
         "border-theme": "var(--border-color)",
       },
     },

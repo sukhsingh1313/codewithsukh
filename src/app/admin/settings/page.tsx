@@ -1,123 +1,164 @@
 'use client';
 
-import { useTheme, type ColorTheme, type TypographyStyle } from '@/components/providers/ThemeProvider';
-import { Palette, Type, Check, Sliders } from 'lucide-react';
+import React from 'react';
+import { useTheme } from '@/components/providers/ThemeProvider';
+import { THEMES, Theme, ColorTheme, TypographyStyle } from '@/lib/themes';
+import { Palette, Type, Check, Sparkles, Layout, Monitor, ShieldCheck } from 'lucide-react';
 
-export default function AdminSettingsPage() {
-  const { colorTheme, typographyStyle, setColorTheme, setTypographyStyle } = useTheme();
+export default function ThemeSettingsPage() {
+  const { colorTheme, typographyStyle, setColorTheme, setTypographyStyle, availableThemes } = useTheme();
 
-  const colorThemes: { id: ColorTheme; name: string; desc: string; colors: string[] }[] = [
-    {
-      id: 'cyber-neon',
-      name: 'Cyber Neon (Default)',
-      desc: 'Dark theme with vibrant cyan, sky blue, and indigo accents.',
-      colors: ['bg-cyan-500', 'bg-sky-400', 'bg-indigo-600'],
-    },
-    {
-      id: 'emerald-pro',
-      name: 'Emerald Pro',
-      desc: 'Deep dark teal theme with rich emerald green accents.',
-      colors: ['bg-emerald-500', 'bg-teal-400', 'bg-emerald-700'],
-    },
-    {
-      id: 'violet-royale',
-      name: 'Violet Royale',
-      desc: 'Rich dark theme with deep purple and violet glowing accents.',
-      colors: ['bg-purple-600', 'bg-violet-500', 'bg-indigo-500'],
-    },
-    {
-      id: 'sunset-blaze',
-      name: 'Sunset Blaze',
-      desc: 'High contrast dark theme with warm rose and orange gradients.',
-      colors: ['bg-rose-500', 'bg-orange-500', 'bg-amber-600'],
-    },
-    {
-      id: 'minimal-light',
-      name: 'Minimal Light',
-      desc: 'Clean, modern light mode aesthetic with crisp slate borders.',
-      colors: ['bg-blue-600', 'bg-sky-500', 'bg-slate-300'],
-    },
-    {
-      id: 'midnight-oled',
-      name: 'Midnight OLED',
-      desc: 'True pitch-black OLED optimized theme with electric blue accents.',
-      colors: ['bg-sky-400', 'bg-blue-500', 'bg-black'],
-    },
-    {
-      id: 'corporate-navy',
-      name: 'Corporate Navy',
-      desc: 'Enterprise slate-navy palette with sky blue highlight elements.',
-      colors: ['bg-slate-900', 'bg-sky-600', 'bg-slate-800'],
-    },
-  ];
-
-  const typographyOptions: { id: TypographyStyle; name: string; sample: string }[] = [
+  const fontOptions: { id: TypographyStyle; name: string; tag: string; fontClass: string; sample: string }[] = [
     {
       id: 'modern-sans',
-      name: 'Modern Sans (Inter)',
-      sample: 'The quick brown fox jumps over the lazy dog.',
+      name: 'Inter Modern Sans',
+      tag: 'Sans-Serif',
+      fontClass: 'font-sans',
+      sample: 'The quick brown fox jumps over the lazy dog',
     },
     {
       id: 'tech-mono',
-      name: 'Tech Mono (Monospace)',
-      sample: 'const code = "CodeWithSukh - Next.js & Supabase";',
+      name: 'Fira Tech Mono',
+      tag: 'Monospace',
+      fontClass: 'font-mono',
+      sample: 'const engine = new CodeWithSukhTheme();',
     },
     {
       id: 'elegant-serif',
-      name: 'Elegant Serif (Serif Accent)',
-      sample: 'Master Full-Stack Web Development with Real Projects.',
+      name: 'Georgia Serif',
+      tag: 'Serif',
+      fontClass: 'font-serif',
+      sample: 'Architecting Scalable SaaS & Production Web Applications',
     },
   ];
 
   return (
-    <div className="space-y-8 max-w-5xl mx-auto font-sans">
-      {/* Header */}
-      <div className="border-b border-slate-800 pb-6">
-        <h1 className="text-2xl font-extrabold text-white flex items-center gap-2.5">
-          <Sliders className="h-6 w-6 text-cyan-400" />
-          <span>Theme & Typography Customization Engine</span>
-        </h1>
-        <p className="text-xs text-slate-400 mt-1">
-          Instantly customize website color palettes and font typography presets across public and admin interfaces.
-        </p>
-      </div>
-
-      {/* Section 1: Color Themes */}
-      <div className="space-y-4">
-        <div className="flex items-center gap-2 text-sm font-bold text-white">
-          <Palette className="h-4 w-4 text-cyan-400" />
-          <span>Select Active Color Palette</span>
+    <div className="space-y-10 max-w-6xl mx-auto pb-12">
+      {/* Top Banner Header */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-theme">
+        <div>
+          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-accent-theme mb-1">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Linear/Raycast Design System</span>
+          </div>
+          <h1 className="text-3xl font-extrabold text-theme-main tracking-tight flex items-center gap-3">
+            Theme & Appearance Engine
+          </h1>
+          <p className="text-sm text-theme-muted mt-1.5 max-w-2xl leading-relaxed">
+            Customize real-time color variables, UI surfaces, typography presets, and dark/light modes. Changes apply instantly across all public and admin routes.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {colorThemes.map((theme) => {
-            const isSelected = colorTheme === theme.id;
+        <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-theme-card border border-theme text-xs text-theme-muted shrink-0">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <span>Dynamic CSS Variables Active</span>
+        </div>
+      </div>
+
+      {/* Section 1: Color Themes Grid */}
+      <div className="space-y-5">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2.5 text-base font-bold text-theme-main">
+            <div className="p-2 rounded-xl bg-accent-theme/10 text-accent-theme">
+              <Palette className="w-4 h-4" />
+            </div>
+            <span>Select Active Color Palette</span>
+          </div>
+          <span className="text-xs text-theme-muted font-mono">{availableThemes.length} Themes Available</span>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {availableThemes.map((t) => {
+            const isActive = colorTheme === t.id;
             return (
               <button
-                key={theme.id}
-                onClick={() => setColorTheme(theme.id)}
-                className={`p-5 rounded-2xl border text-left flex flex-col justify-between space-y-4 backdrop-blur-xl transition-all ${
-                  isSelected
-                    ? 'bg-slate-900 border-cyan-500 shadow-xl shadow-cyan-950/30 ring-2 ring-cyan-500 scale-[1.02]'
-                    : 'bg-slate-900/50 border-slate-800 hover:border-slate-700'
+                key={t.id}
+                type="button"
+                onClick={() => setColorTheme(t.id as ColorTheme)}
+                className={`relative group w-full text-left p-5 rounded-2xl border transition-all duration-200 cursor-pointer backdrop-blur-xl flex flex-col justify-between space-y-4 ${
+                  isActive
+                    ? 'ring-2 ring-offset-2 ring-offset-slate-950 ring-accent-theme border-accent-theme bg-theme-card shadow-2xl shadow-accent-theme/10 scale-[1.01]'
+                    : 'border-theme bg-theme-card/60 hover:border-accent-theme/50 hover:bg-theme-card/80'
                 }`}
               >
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-bold text-white">{theme.name}</span>
-                    {isSelected && (
-                      <span className="p-1 rounded-full bg-cyan-500 text-slate-950">
-                        <Check className="h-3.5 w-3.5 stroke-[3]" />
-                      </span>
-                    )}
+                {/* Active Selection Badge */}
+                {isActive && (
+                  <div className="absolute top-4 right-4 z-10 w-6 h-6 rounded-full bg-accent-theme text-slate-950 flex items-center justify-center font-bold shadow-lg">
+                    <Check className="w-3.5 h-3.5 stroke-[3]" />
                   </div>
-                  <p className="text-xs text-slate-400 leading-relaxed">{theme.desc}</p>
+                )}
+
+                {/* Live UI Preview Widget inside the card */}
+                <div
+                  className="w-full h-32 rounded-xl p-2.5 border border-white/10 flex flex-col justify-between overflow-hidden shadow-inner relative group-hover:scale-[1.01] transition-transform"
+                  style={{ backgroundColor: t.variables['--bg-primary'] }}
+                >
+                  {/* Mini Nav Header */}
+                  <div
+                    className="w-full h-5 rounded-md flex items-center justify-between px-2 text-[9px] font-bold border border-white/10"
+                    style={{ backgroundColor: t.variables['--card-bg'], color: t.variables['--text-primary'] }}
+                  >
+                    <div className="flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: t.variables['--accent-primary'] }} />
+                      <span>{t.name}</span>
+                    </div>
+                    <span className="text-[8px] opacity-60 uppercase">{t.mode}</span>
+                  </div>
+
+                  {/* Mini Body Content */}
+                  <div className="flex gap-2 h-18">
+                    {/* Mini Sidebar */}
+                    <div
+                      className="w-1/4 rounded-md p-1 flex flex-col gap-1 border border-white/5"
+                      style={{ backgroundColor: t.variables['--bg-secondary'] }}
+                    >
+                      <div className="w-full h-1.5 rounded" style={{ backgroundColor: t.variables['--accent-primary'], opacity: 0.8 }} />
+                      <div className="w-3/4 h-1 rounded" style={{ backgroundColor: t.variables['--text-muted'], opacity: 0.3 }} />
+                      <div className="w-1/2 h-1 rounded" style={{ backgroundColor: t.variables['--text-muted'], opacity: 0.3 }} />
+                    </div>
+
+                    {/* Mini Dashboard Content */}
+                    <div className="flex-1 flex flex-col justify-between">
+                      <div
+                        className="w-full h-8 rounded-md p-1.5 flex items-center justify-between border border-white/10"
+                        style={{ backgroundColor: t.variables['--card-bg'] }}
+                      >
+                        <div className="space-y-0.5">
+                          <div className="w-10 h-1.5 rounded" style={{ backgroundColor: t.variables['--text-primary'] }} />
+                          <div className="w-6 h-1 rounded" style={{ backgroundColor: t.variables['--text-muted'], opacity: 0.5 }} />
+                        </div>
+                        <div
+                          className="w-4 h-4 rounded-md flex items-center justify-center font-bold text-[8px]"
+                          style={{ backgroundColor: t.variables['--accent-primary'], color: t.variables['--bg-primary'] }}
+                        >
+                          ✓
+                        </div>
+                      </div>
+
+                      {/* Mini Action Button */}
+                      <div
+                        className="w-full h-4 rounded-md flex items-center justify-center text-[8px] font-bold shadow-sm"
+                        style={{ backgroundColor: t.variables['--accent-primary'], color: t.variables['--bg-primary'] }}
+                      >
+                        Launch Course
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="flex items-center gap-2 pt-2 border-t border-slate-800/60">
-                  {theme.colors.map((c, idx) => (
-                    <span key={idx} className={`h-4 w-6 rounded-md ${c} shadow-sm`} />
-                  ))}
+                {/* Metadata Description */}
+                <div>
+                  <div className="flex items-center justify-between">
+                    <h3 className="font-bold text-base text-theme-main group-hover:text-accent-theme transition-colors">
+                      {t.name}
+                    </h3>
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-theme-secondary text-theme-muted font-mono uppercase border border-theme">
+                      {t.mode}
+                    </span>
+                  </div>
+                  <p className="text-xs text-theme-muted mt-1.5 line-clamp-2 leading-relaxed">
+                    {t.description}
+                  </p>
                 </div>
               </button>
             );
@@ -125,35 +166,45 @@ export default function AdminSettingsPage() {
         </div>
       </div>
 
-      {/* Section 2: Typography Presets */}
-      <div className="space-y-4 pt-6 border-t border-slate-800">
-        <div className="flex items-center gap-2 text-sm font-bold text-white">
-          <Type className="h-4 w-4 text-indigo-400" />
-          <span>Select Active Typography Style</span>
+      {/* Section 2: Typography Style Selector */}
+      <div className="space-y-5 pt-8 border-t border-theme">
+        <div className="flex items-center gap-2.5 text-base font-bold text-theme-main">
+          <div className="p-2 rounded-xl bg-accent-theme/10 text-accent-theme">
+            <Type className="w-4 h-4" />
+          </div>
+          <span>Select Active Typography Preset</span>
         </div>
 
-        <div className="space-y-3 max-w-3xl">
-          {typographyOptions.map((font) => {
-            const isSelected = typographyStyle === font.id;
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {fontOptions.map((f) => {
+            const isSelected = typographyStyle === f.id;
             return (
               <button
-                key={font.id}
-                onClick={() => setTypographyStyle(font.id)}
-                className={`w-full p-4 rounded-2xl border text-left flex items-center justify-between gap-4 backdrop-blur-xl transition-all ${
+                key={f.id}
+                type="button"
+                onClick={() => setTypographyStyle(f.id)}
+                className={`p-5 rounded-2xl border text-left flex flex-col justify-between space-y-3 transition-all cursor-pointer backdrop-blur-xl ${
                   isSelected
-                    ? 'bg-slate-900 border-indigo-500 shadow-lg ring-2 ring-indigo-500'
-                    : 'bg-slate-900/50 border-slate-800 hover:border-slate-700'
+                    ? 'ring-2 ring-accent-theme border-accent-theme bg-theme-card shadow-lg'
+                    : 'border-theme bg-theme-card/60 hover:border-accent-theme/40'
                 }`}
               >
-                <div className="space-y-1">
-                  <div className="text-xs font-bold text-white">{font.name}</div>
-                  <div className="text-xs text-slate-400 italic">{font.sample}</div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-bold text-theme-main">{f.name}</span>
+                  <span className="text-[10px] px-2 py-0.5 rounded-md bg-theme-secondary text-theme-muted font-mono">
+                    {f.tag}
+                  </span>
                 </div>
 
+                <p className={`text-xs text-theme-muted leading-relaxed italic ${f.fontClass}`}>
+                  "{f.sample}"
+                </p>
+
                 {isSelected && (
-                  <span className="p-1.5 rounded-full bg-indigo-600 text-white shrink-0">
-                    <Check className="h-4 w-4 stroke-[3]" />
-                  </span>
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-accent-theme pt-2 border-t border-theme">
+                    <Check className="w-3.5 h-3.5 stroke-[3]" />
+                    <span>Active Font</span>
+                  </div>
                 )}
               </button>
             );
