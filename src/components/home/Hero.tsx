@@ -18,13 +18,13 @@ export function Hero() {
         {/* Hero Main Headline */}
         <div className="space-y-4 max-w-4xl mx-auto">
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.15]">
-            Master Full-Stack Dev with <br className="hidden sm:inline" />
+            CodeWithSukh: Master Full-Stack Dev with <br className="hidden sm:inline" />
             <span className="bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-400 bg-clip-text text-transparent">
               Real-World Projects & Courses
             </span>
           </h1>
           <p className="max-w-2xl mx-auto text-base sm:text-xl text-slate-400 font-normal leading-relaxed">
-            Elevate your coding skills with production-ready Next.js, TypeScript, and Supabase tutorials. Explore live interactive showcases and comprehensive web development courses.
+            Elevate your coding skills on CodeWithSukh (codewithsukh.online) with production-ready Next.js, Python, TypeScript, and Supabase tutorials by Sukhchain Singh.
           </p>
         </div>
 
