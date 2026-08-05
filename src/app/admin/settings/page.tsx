@@ -37,6 +37,18 @@ export default function AdminSettingsPage() {
       desc: 'Clean, modern light mode aesthetic with crisp slate borders.',
       colors: ['bg-blue-600', 'bg-sky-500', 'bg-slate-300'],
     },
+    {
+      id: 'midnight-oled',
+      name: 'Midnight OLED',
+      desc: 'True pitch-black OLED optimized theme with electric blue accents.',
+      colors: ['bg-sky-400', 'bg-blue-500', 'bg-black'],
+    },
+    {
+      id: 'corporate-navy',
+      name: 'Corporate Navy',
+      desc: 'Enterprise slate-navy palette with sky blue highlight elements.',
+      colors: ['bg-slate-900', 'bg-sky-600', 'bg-slate-800'],
+    },
   ];
 
   const typographyOptions: { id: TypographyStyle; name: string; sample: string }[] = [

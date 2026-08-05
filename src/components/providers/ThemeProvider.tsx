@@ -3,6 +3,8 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { ColorTheme, TypographyStyle, THEMES, Theme } from '@/lib/themes';
 
+export type { ColorTheme, TypographyStyle };
+
 interface ThemeContextType {
   colorTheme: ColorTheme;
   typographyStyle: TypographyStyle;
