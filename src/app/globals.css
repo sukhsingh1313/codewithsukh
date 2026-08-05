@@ -1,17 +1,25 @@
 @import "tailwindcss";
 
+@theme {
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-card-bg: var(--card-bg);
+  --color-border-theme: var(--border-color);
+  --color-text-primary: var(--text-primary);
+  --color-text-muted: var(--text-muted);
+  --color-accent-primary: var(--accent-primary);
+  --color-accent-secondary: var(--accent-secondary);
+}
+
 :root {
   --bg-primary: #030712;
   --bg-secondary: #0b1329;
   --card-bg: #111827;
   --border-color: #1f2937;
   --text-primary: #f9fafb;
-  --text-main: #f9fafb;
   --text-muted: #9ca3af;
   --accent-primary: #06b6d4;
   --accent-secondary: #6366f1;
-  --primary-color: #06b6d4;
-  --primary-hover: #0891b2;
 }
 
 html[data-theme="cyber-neon"] {
@@ -20,12 +28,9 @@ html[data-theme="cyber-neon"] {
   --card-bg: #111827;
   --border-color: #1f2937;
   --text-primary: #f9fafb;
-  --text-main: #f9fafb;
   --text-muted: #9ca3af;
   --accent-primary: #06b6d4;
   --accent-secondary: #6366f1;
-  --primary-color: #06b6d4;
-  --primary-hover: #0891b2;
 }
 
 html[data-theme="emerald-pro"] {
@@ -34,12 +39,9 @@ html[data-theme="emerald-pro"] {
   --card-bg: #065f46;
   --border-color: #047857;
   --text-primary: #ecfdf5;
-  --text-main: #ecfdf5;
   --text-muted: #a7f3d0;
   --accent-primary: #10b981;
   --accent-secondary: #14b8a6;
-  --primary-color: #10b981;
-  --primary-hover: #059669;
 }
 
 html[data-theme="violet-royale"] {
@@ -48,12 +50,9 @@ html[data-theme="violet-royale"] {
   --card-bg: #2e1a47;
   --border-color: #4c1d95;
   --text-primary: #f5f3ff;
-  --text-main: #f5f3ff;
   --text-muted: #ddd6fe;
   --accent-primary: #8b5cf6;
   --accent-secondary: #d946ef;
-  --primary-color: #8b5cf6;
-  --primary-hover: #7c3aed;
 }
 
 html[data-theme="sunset-blaze"] {
@@ -62,12 +61,9 @@ html[data-theme="sunset-blaze"] {
   --card-bg: #3f1217;
   --border-color: #881337;
   --text-primary: #fff1f2;
-  --text-main: #fff1f2;
   --text-muted: #fecdd3;
   --accent-primary: #f43f5e;
   --accent-secondary: #f97316;
-  --primary-color: #f43f5e;
-  --primary-hover: #e11d48;
 }
 
 html[data-theme="minimal-light"] {
@@ -76,12 +72,9 @@ html[data-theme="minimal-light"] {
   --card-bg: #ffffff;
   --border-color: #e2e8f0;
   --text-primary: #0f172a;
-  --text-main: #0f172a;
   --text-muted: #64748b;
   --accent-primary: #2563eb;
   --accent-secondary: #0284c7;
-  --primary-color: #2563eb;
-  --primary-hover: #1d4ed8;
 }
 
 html[data-theme="midnight-oled"] {
@@ -90,12 +83,9 @@ html[data-theme="midnight-oled"] {
   --card-bg: #121215;
   --border-color: #27272a;
   --text-primary: #ffffff;
-  --text-main: #ffffff;
   --text-muted: #a1a1aa;
   --accent-primary: #38bdf8;
   --accent-secondary: #60a5fa;
-  --primary-color: #38bdf8;
-  --primary-hover: #0284c7;
 }
 
 html[data-theme="corporate-navy"] {
@@ -104,27 +94,13 @@ html[data-theme="corporate-navy"] {
   --card-bg: #334155;
   --border-color: #475569;
   --text-primary: #f8fafc;
-  --text-main: #f8fafc;
   --text-muted: #94a3b8;
   --accent-primary: #0284c7;
   --accent-secondary: #38bdf8;
-  --primary-color: #0284c7;
-  --primary-hover: #0369a1;
-}
-
-/* Typography Font Styles */
-html[data-font="sans"], html[data-font="modern-sans"] {
-  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
-}
-html[data-font="mono"], html[data-font="tech-mono"] {
-  font-family: 'Fira Code', 'JetBrains Mono', ui-monospace, monospace;
-}
-html[data-font="serif"], html[data-font="elegant-serif"] {
-  font-family: Georgia, Cambria, 'Times New Roman', serif;
 }
 
 body {
   background-color: var(--bg-primary);
-  color: var(--text-primary, var(--text-main));
+  color: var(--text-primary);
   transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out, border-color 0.25s ease-in-out;
 }
