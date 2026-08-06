@@ -1,7 +1,8 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
+import { PwaInstallPrompt } from '@/components/pwa/PwaInstallPrompt';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -10,6 +11,13 @@ const inter = Inter({
 });
 
 const siteUrl = 'https://www.codewithsukh.online';
+
+export const viewport: Viewport = {
+  themeColor: '#020617',
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -36,6 +44,12 @@ export const metadata: Metadata = {
   authors: [{ name: 'Sukhchain Singh', url: siteUrl }],
   creator: 'Sukhchain Singh',
   publisher: 'CodeWithSukh',
+  manifest: '/manifest.webmanifest',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: 'CodeWithSukh',
+  },
   alternates: {
     canonical: '/',
   },
@@ -76,7 +90,8 @@ export const metadata: Metadata = {
     images: [`${siteUrl}/og-image.png`],
   },
   icons: {
-    icon: '/favicon.ico',
+    icon: '/logo.png',
+    apple: '/logo.png',
   },
 };
 
@@ -98,7 +113,7 @@ const jsonLd = [
     '@type': 'Organization',
     name: 'CodeWithSukh',
     url: siteUrl,
-    logo: `${siteUrl}/favicon.ico`,
+    logo: `${siteUrl}/logo.png`,
     founder: {
       '@type': 'Person',
       name: 'Sukhchain Singh',
@@ -137,9 +152,13 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <meta name="mobile-web-app-capable" content="yes" />
       </head>
       <body className="min-h-screen bg-theme-main text-text-theme-main font-sans selection:bg-cyan-500 selection:text-slate-950 flex flex-col">
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          {children}
+          <PwaInstallPrompt />
+        </ThemeProvider>
       </body>
     </html>
   );
