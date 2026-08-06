@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Code2, Menu, X, Shield, ArrowRight } from 'lucide-react';
+import Image from 'next/image';
+import { Menu, X, Shield, ArrowRight } from 'lucide-react';
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -21,10 +22,17 @@ export function Header() {
         {/* Brand Logo */}
         <Link
           href="/"
-          className="flex items-center gap-2.5 group transition-transform duration-200 hover:scale-[1.02]"
+          className="flex items-center gap-3 group transition-transform duration-200 hover:scale-[1.02]"
         >
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-cyan-500 to-indigo-600 p-2 text-slate-950 shadow-lg shadow-cyan-500/20 group-hover:shadow-cyan-500/30 transition-all">
-            <Code2 className="h-6 w-6 stroke-[2.5]" />
+          <div className="relative flex h-10 w-10 overflow-hidden rounded-xl border border-cyan-500/30 shadow-lg shadow-cyan-500/20 group-hover:border-cyan-400/50 transition-all">
+            <Image
+              src="/logo.png"
+              alt="CodeWithSukh Logo"
+              fill
+              sizes="40px"
+              className="object-cover"
+              priority
+            />
           </div>
           <span className="text-xl font-bold tracking-tight text-white">
             Code<span className="bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-400 bg-clip-text text-transparent">WithSukh</span>

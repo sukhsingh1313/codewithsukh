@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import {
@@ -77,8 +78,14 @@ export function AdminSidebar() {
           {/* Logo Header */}
           <div className="flex items-center justify-between">
             <Link href="/admin" className="flex items-center gap-2.5">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-tr from-cyan-500 to-indigo-600 text-slate-950 shadow-md">
-                <Code2 className="h-5 w-5 stroke-[2.5]" />
+              <div className="relative flex h-9 w-9 overflow-hidden rounded-xl border border-cyan-500/30 shadow-md">
+                <Image
+                  src="/logo.png"
+                  alt="CodeWithSukh Logo"
+                  fill
+                  sizes="36px"
+                  className="object-cover"
+                />
               </div>
               <div>
                 <span className="text-base font-bold text-white block leading-none">CodeWithSukh</span>

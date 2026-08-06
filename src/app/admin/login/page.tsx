@@ -3,8 +3,9 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { createClient } from '@/lib/supabase/client';
-import { Code2, Shield, Lock, Mail, Loader2, AlertCircle } from 'lucide-react';
+import { Shield, Lock, Mail, Loader2, AlertCircle } from 'lucide-react';
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -50,8 +51,15 @@ export default function AdminLoginPage() {
         {/* Header Logo & Title */}
         <div className="text-center space-y-3">
           <Link href="/" className="inline-flex items-center gap-2.5">
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-tr from-cyan-500 to-indigo-600 p-2.5 text-slate-950 shadow-lg shadow-cyan-500/20">
-              <Code2 className="h-6 w-6 stroke-[2.5]" />
+            <div className="relative flex h-11 w-11 overflow-hidden rounded-xl border border-cyan-500/30 shadow-lg shadow-cyan-500/20">
+              <Image
+                src="/logo.png"
+                alt="CodeWithSukh Logo"
+                fill
+                sizes="44px"
+                className="object-cover"
+                priority
+              />
             </div>
             <span className="text-2xl font-bold tracking-tight text-white">
               Code<span className="bg-gradient-to-r from-cyan-400 to-indigo-400 bg-clip-text text-transparent">WithSukh</span>

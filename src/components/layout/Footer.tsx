@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { Code2, Github, Linkedin, Youtube, Twitter } from 'lucide-react';
+import Image from 'next/image';
+import { Github, Linkedin, Youtube, Twitter } from 'lucide-react';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -29,8 +30,14 @@ export function Footer() {
           {/* Column 1: Brand Intro & Social Links */}
           <div className="space-y-4 md:col-span-2">
             <Link href="/" className="flex items-center gap-2.5">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-tr from-cyan-500 to-indigo-600 p-2 text-slate-950 shadow-md">
-                <Code2 className="h-5 w-5 stroke-[2.5]" />
+              <div className="relative flex h-9 w-9 overflow-hidden rounded-xl border border-cyan-500/30 shadow-md">
+                <Image
+                  src="/logo.png"
+                  alt="CodeWithSukh Logo"
+                  fill
+                  sizes="36px"
+                  className="object-cover"
+                />
               </div>
               <span className="text-lg font-bold tracking-tight text-white">
                 Code<span className="bg-gradient-to-r from-cyan-400 to-indigo-400 bg-clip-text text-transparent">WithSukh</span>
