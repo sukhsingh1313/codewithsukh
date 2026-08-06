@@ -90,7 +90,7 @@ USING (status = 'published');`,
 
             {/* Subtitle */}
             <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed max-w-2xl mx-auto lg:mx-0">
-              Build production-ready web apps with Next.js, Python, TypeScript, React, and Supabase. Crafted by <strong>Sukhchain Singh</strong> for aspiring full-stack engineers.
+              Accelerate your engineering career by building real-world SaaS apps from scratch. Master Next.js 15, Python, TypeScript, and Supabase with zero-fluff tutorials and open-source code by <strong>Sukhchain Singh</strong>.
             </p>
 
             {/* CTAs */}
