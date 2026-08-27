@@ -55,6 +55,17 @@ html[data-theme="violet-royale"] {
   --accent-secondary: #d946ef;
 }
 
+html[data-theme="sunset-blaze"] {
+  --bg-primary: #1c0505;
+  --bg-secondary: #2c0b0e;
+  --card-bg: #3f1217;
+  --border-color: #881337;
+  --text-primary: #fff1f2;
+  --text-muted: #fecdd3;
+  --accent-primary: #f43f5e;
+  --accent-secondary: #f97316;
+}
+
 html[data-theme="midnight-oled"] {
   --bg-primary: #000000;
   --bg-secondary: #09090b;
