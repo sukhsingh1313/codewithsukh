@@ -1,144 +1,98 @@
 'use client';
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { ColorTheme, TypographyStyle, THEMES, Theme } from '@/lib/themes';
 
-export type { ColorTheme, TypographyStyle };
+export type ThemeMode = 'dark' | 'light' | 'system';
 
 interface ThemeContextType {
-  colorTheme: ColorTheme;
-  typographyStyle: TypographyStyle;
-  activeTheme: Theme;
-  setColorTheme: (theme: ColorTheme) => void;
-  setTypographyStyle: (font: TypographyStyle) => void;
-  availableThemes: Theme[];
+  mode: 'dark' | 'light';
+  themePreference: ThemeMode;
+  setThemePreference: (mode: ThemeMode) => void;
 }
 
 const ThemeContext = createContext<ThemeContextType>({
-  colorTheme: 'cyber-neon',
-  typographyStyle: 'modern-sans',
-  activeTheme: THEMES['cyber-neon'],
-  setColorTheme: () => {},
-  setTypographyStyle: () => {},
-  availableThemes: Object.values(THEMES),
+  mode: 'dark',
+  themePreference: 'system',
+  setThemePreference: () => {},
 });
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [colorTheme, setColorThemeState] = useState<ColorTheme>('cyber-neon');
-  const [typographyStyle, setTypographyStyleState] = useState<TypographyStyle>('modern-sans');
-  const [mounted, setMounted] = useState(false);
-
-  const applyThemeToDOM = (themeId: ColorTheme, font: TypographyStyle) => {
-    if (typeof window === 'undefined') return;
-    const root = document.documentElement;
-    const themeObj = THEMES[themeId] || THEMES['cyber-neon'];
-
-    // 1. Set data attributes on html root
-    root.setAttribute('data-theme', themeId);
-    root.setAttribute('data-font', font);
-
-    // 2. Synchronously inject dynamic CSS variables onto documentElement style
-    Object.entries(themeObj.variables).forEach(([property, value]) => {
-      root.style.setProperty(property, value);
-    });
-
-    // 3. Toggle tailwind dark/light class
-    if (themeObj.mode === 'light') {
-      root.classList.remove('dark');
-      root.classList.add('light');
-    } else {
-      root.classList.remove('light');
-      root.classList.add('dark');
-    }
-  };
+  const [mode, setMode] = useState<'dark' | 'light'>('dark');
+  const [themePreference, setThemePreferenceState] = useState<ThemeMode>('system');
 
   useEffect(() => {
-    setMounted(true);
+    const root = document.documentElement;
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
-    // Read initial theme preference from localStorage or fallback
-    const savedTheme = (localStorage.getItem('codewithsukh_theme') as ColorTheme) || 'cyber-neon';
-    const savedFont = (localStorage.getItem('codewithsukh_font') as TypographyStyle) || 'modern-sans';
+    const savedPref = (localStorage.getItem('codewithsukh_theme_mode') as ThemeMode) || 'system';
+    setThemePreferenceState(savedPref);
 
-    const validTheme = THEMES[savedTheme] ? savedTheme : 'cyber-neon';
-
-    setColorThemeState(validTheme);
-    setTypographyStyleState(savedFont);
-
-    // Synchronously apply variables to DOM
-    applyThemeToDOM(validTheme, savedFont);
-
-    // Handle cross-tab storage sync and custom events
-    const handleStorageEvent = (e: StorageEvent | CustomEvent) => {
-      let newTheme = validTheme;
-      let newFont = savedFont;
-
-      if ('detail' in e && e.detail) {
-        if (e.detail.theme && THEMES[e.detail.theme as ColorTheme]) {
-          newTheme = e.detail.theme;
-        }
-        if (e.detail.font) newFont = e.detail.font;
+    const applyTheme = () => {
+      let isDark = true;
+      if (savedPref === 'system') {
+        isDark = mediaQuery.matches;
       } else {
-        const stored = localStorage.getItem('codewithsukh_theme') as ColorTheme;
-        if (stored && THEMES[stored]) newTheme = stored;
-        const storedFont = localStorage.getItem('codewithsukh_font') as TypographyStyle;
-        if (storedFont) newFont = storedFont;
+        isDark = savedPref === 'dark';
       }
 
-      setColorThemeState(newTheme);
-      setTypographyStyleState(newFont);
-      applyThemeToDOM(newTheme, newFont);
+      if (isDark) {
+        root.classList.add('dark');
+        root.classList.remove('light');
+        setMode('dark');
+      } else {
+        root.classList.remove('dark');
+        root.classList.add('light');
+        setMode('light');
+      }
     };
 
-    window.addEventListener('storage', handleStorageEvent as EventListener);
-    window.addEventListener('codewithsukh_theme_change' as any, handleStorageEvent as EventListener);
+    applyTheme();
 
-    return () => {
-      window.removeEventListener('storage', handleStorageEvent as EventListener);
-      window.removeEventListener('codewithsukh_theme_change' as any, handleStorageEvent as EventListener);
+    const handleSystemChange = (e: MediaQueryListEvent) => {
+      const currentPref = localStorage.getItem('codewithsukh_theme_mode') || 'system';
+      if (currentPref === 'system') {
+        if (e.matches) {
+          root.classList.add('dark');
+          root.classList.remove('light');
+          setMode('dark');
+        } else {
+          root.classList.remove('dark');
+          root.classList.add('light');
+          setMode('light');
+        }
+      }
     };
+
+    mediaQuery.addEventListener('change', handleSystemChange);
+    return () => mediaQuery.removeEventListener('change', handleSystemChange);
   }, []);
 
-  const setColorTheme = (theme: ColorTheme) => {
-    if (!THEMES[theme]) return;
-    setColorThemeState(theme);
-    localStorage.setItem('codewithsukh_theme', theme);
-    applyThemeToDOM(theme, typographyStyle);
+  const setThemePreference = (newPref: ThemeMode) => {
+    setThemePreferenceState(newPref);
+    localStorage.setItem('codewithsukh_theme_mode', newPref);
 
-    // Broadcast custom event for immediate component updates
-    if (typeof window !== 'undefined') {
-      window.dispatchEvent(
-        new CustomEvent('codewithsukh_theme_change', { detail: { theme, font: typographyStyle } })
-      );
+    const root = document.documentElement;
+    let isDark = true;
+    if (newPref === 'system') {
+      isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    } else {
+      isDark = newPref === 'dark';
+    }
+
+    if (isDark) {
+      root.classList.add('dark');
+      root.classList.remove('light');
+      setMode('dark');
+    } else {
+      root.classList.remove('dark');
+      root.classList.add('light');
+      setMode('light');
     }
   };
-
-  const setTypographyStyle = (font: TypographyStyle) => {
-    setTypographyStyleState(font);
-    localStorage.setItem('codewithsukh_font', font);
-    applyThemeToDOM(colorTheme, font);
-
-    if (typeof window !== 'undefined') {
-      window.dispatchEvent(
-        new CustomEvent('codewithsukh_theme_change', { detail: { theme: colorTheme, font } })
-      );
-    }
-  };
-
-  const activeTheme = THEMES[colorTheme] || THEMES['cyber-neon'];
 
   return (
-    <ThemeContext.Provider
-      value={{
-        colorTheme,
-        typographyStyle,
-        activeTheme,
-        setColorTheme,
-        setTypographyStyle,
-        availableThemes: Object.values(THEMES),
-      }}
-    >
-      {/* Avoid flash of unstyled content during SSR hydration */}
-      <div style={{ visibility: mounted ? 'visible' : 'visible' }}>{children}</div>
+    <ThemeContext.Provider value={{ mode, themePreference, setThemePreference }}>
+      {children}
     </ThemeContext.Provider>
   );
 }
