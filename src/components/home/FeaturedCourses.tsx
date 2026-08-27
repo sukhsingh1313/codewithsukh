@@ -208,13 +208,15 @@ export function FeaturedCourses({ initialCourses }: FeaturedCoursesProps) {
                   <span>{course.duration || 'Self-paced'}</span>
                 </div>
 
-                <Link
-                  href={`/courses/${course.slug}`}
+                <a
+                  href={course.enrollment_link || 'https://github.com/sukhsingh1313'}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 text-xs font-semibold text-cyan-400 hover:text-cyan-300 transition-colors"
                 >
                   <span>Enroll Now</span>
                   <ArrowUpRight className="h-3.5 w-3.5" />
-                </Link>
+                </a>
               </div>
             </div>
           ))}
