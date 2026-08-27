@@ -145,7 +145,7 @@ export default function ContactPage() {
                   </div>
                   <div className="flex items-center gap-3">
                     <a
-                      href="https://github.com"
+                      href="https://github.com/sukhsingh1313"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="p-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-400 hover:text-cyan-400 hover:border-slate-700 transition-all"

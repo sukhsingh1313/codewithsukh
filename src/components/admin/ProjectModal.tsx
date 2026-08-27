@@ -173,7 +173,7 @@ export function ProjectModal({ isOpen, onClose, onSuccess, projectToEdit }: Proj
                 type="url"
                 value={githubUrl}
                 onChange={(e) => setGithubUrl(e.target.value)}
-                placeholder="https://github.com/codewithsukh/..."
+                placeholder="https://github.com/sukhsingh1313/..."
                 className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-slate-100 placeholder-slate-500 text-xs focus:outline-none focus:border-indigo-500"
               />
             </div>

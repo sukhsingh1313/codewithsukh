@@ -77,24 +77,24 @@ export default function AboutPage() {
   const timeline = [
     {
       period: '2024 - Present',
-      role: 'Principal Engineer & Platform Architect',
-      company: 'CodeWithSukh Platform',
+      role: 'Full-Stack & AI Systems Developer',
+      company: 'Sukhchain Singh Projects (Appointro, HireSenseAI, AI ATS)',
       description:
-        'Architected full-stack systems and cross-platform mobile prototypes utilizing Next.js, React Native, FastAPI microservices, Spring Boot backends, and Supabase RLS security.',
+        'Architected production web platforms including Appointro (appointment booking), HireSenseAI (talent evaluation), and AI-Powered Resume Screening ATS utilizing Next.js, TypeScript, OpenAI API, and Supabase.',
     },
     {
       period: '2023 - 2024',
-      role: 'Full-Stack Developer & Technical Educator',
-      company: 'Tech Learning Hub',
+      role: 'Full-Stack Developer & Educator',
+      company: 'AI Study Assistant & Student Toolings',
       description:
-        'Taught advanced Data Structures & Algorithms in C/C++, web development with Django & React, Data Analysis workflows, and AI prompt engineering concepts.',
+        'Engineered AI Study Assistant Pro and web toolings. Conducted mentorship on Data Structures & Algorithms (DSA), C/C++ core programming, and modern web application development.',
     },
     {
       period: '2022 - 2023',
-      role: 'Software Systems Engineer',
-      company: 'Software Systems Lab',
+      role: 'Systems & Web Software Engineer',
+      company: 'Open Source Software Development',
       description:
-        'Engineered backend API endpoints using Spring Boot and FastAPI, optimized database queries, and implemented low-level networking socket modules.',
+        'Built utility platforms, API microservices, digital tools, and responsive interfaces with Python, JavaScript, HTML/CSS, and database systems.',
     },
   ];
 
