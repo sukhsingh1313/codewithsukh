@@ -10,7 +10,63 @@ interface ProjectListProps {
 
 const fallbackProjects: Project[] = [
   {
-    id: '1',
+    id: 'codewithsukh-platform',
+    title: 'CodeWithSukh Platform',
+    description:
+      'Developer education & portfolio portal built to deliver technical courses, showcase production software, and provide developer roadmaps.',
+    thumbnail_url: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&auto=format&fit=crop&q=80',
+    live_demo_url: 'https://codewithsukh.vercel.app',
+    github_url: 'https://github.com/sukhsingh1313/codewithsukh',
+    tech_stack: ['Next.js', 'Tailwind', 'Vercel'],
+    featured: true,
+    status: 'published',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'divyasaathi',
+    title: 'DivyaSaathi',
+    description:
+      'Social networking & matrimonial mobile application offering secure profile matching, custom preference filters, and real-time chat.',
+    thumbnail_url: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format&fit=crop&q=80',
+    live_demo_url: 'https://github.com/sukhsingh1313/DivyaSaathi',
+    github_url: 'https://github.com/sukhsingh1313/DivyaSaathi',
+    tech_stack: ['Django REST', 'React Native', 'Expo'],
+    featured: true,
+    status: 'published',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'mybooklab',
+    title: 'MyBookLab',
+    description:
+      'Digital library management web application designed for cataloging books, tracking lending cycles, and managing digital book archives.',
+    thumbnail_url: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=800&auto=format&fit=crop&q=80',
+    live_demo_url: 'https://mybooklab.onrender.com',
+    github_url: 'https://github.com/sukhsingh1313/MyBookLab',
+    tech_stack: ['Python', 'Django', 'Render'],
+    featured: true,
+    status: 'published',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'studypowerhub',
+    title: 'StudyPowerHub',
+    description:
+      'AI-driven learning portal with PDF integration enabling students to extract summaries, generate flashcards, and query documents with AI.',
+    thumbnail_url: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&auto=format&fit=crop&q=80',
+    live_demo_url: 'https://studypowerhub.vercel.app',
+    github_url: 'https://github.com/sukhsingh1313/StudyPowerHub',
+    tech_stack: ['Next.js', 'Tailwind', 'Gemini API'],
+    featured: true,
+    status: 'published',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'appointro',
     title: 'Appointro — Appointment Booking Platform',
     description:
       'A modern appointment booking and business management platform for clinics, salons, consultants, and service-based businesses.',

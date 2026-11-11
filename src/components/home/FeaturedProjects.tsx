@@ -6,58 +6,58 @@ interface FeaturedProjectsProps {
   initialProjects?: Project[];
 }
 
-const fallbackProjects: Project[] = [
+export const fallbackFeaturedProjects: Project[] = [
   {
-    id: '1',
-    title: 'Appointro — Appointment Booking & Management Platform',
+    id: 'codewithsukh-platform',
+    title: 'CodeWithSukh Platform',
     description:
-      'A modern appointment booking and business management platform for clinics, salons, consultants, and service-based businesses.',
-    thumbnail_url: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80',
-    live_demo_url: 'https://appointro.vercel.app',
-    github_url: 'https://github.com/sukhsingh1313/Appointro',
-    tech_stack: ['TypeScript', 'Next.js', 'React', 'Tailwind CSS', 'Supabase'],
+      'Developer education & portfolio portal built to deliver technical courses, showcase production software, and provide developer roadmaps.',
+    thumbnail_url: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&auto=format&fit=crop&q=80',
+    live_demo_url: 'https://codewithsukh.vercel.app',
+    github_url: 'https://github.com/sukhsingh1313/codewithsukh',
+    tech_stack: ['Next.js', 'Tailwind', 'Vercel'],
     featured: true,
     status: 'published',
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
   },
   {
-    id: '2',
-    title: 'HireSenseAI — AI Talent Assessment Platform',
+    id: 'divyasaathi',
+    title: 'DivyaSaathi',
     description:
-      'AI-driven hiring and talent assessment platform designed to automate candidate screening, evaluate coding capabilities, and streamline interviews.',
-    thumbnail_url: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&auto=format&fit=crop&q=80',
-    live_demo_url: 'https://github.com/sukhsingh1313/HireSenseAI',
-    github_url: 'https://github.com/sukhsingh1313/HireSenseAI',
-    tech_stack: ['TypeScript', 'React', 'OpenAI API', 'Tailwind CSS'],
+      'Social networking & matrimonial mobile application offering secure profile matching, custom preference filters, and real-time chat.',
+    thumbnail_url: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format&fit=crop&q=80',
+    live_demo_url: 'https://github.com/sukhsingh1313/DivyaSaathi',
+    github_url: 'https://github.com/sukhsingh1313/DivyaSaathi',
+    tech_stack: ['Django REST', 'React Native', 'Expo'],
     featured: true,
     status: 'published',
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
   },
   {
-    id: '3',
-    title: 'AI-Powered Resume Screening System (ATS)',
+    id: 'mybooklab',
+    title: 'MyBookLab',
     description:
-      'Smart Applicant Tracking System that parses resumes, matches keywords against job descriptions, and calculates match scores using AI models.',
-    thumbnail_url: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&auto=format&fit=crop&q=80',
-    live_demo_url: 'https://github.com/sukhsingh1313/AI-Powered-Resume-Screening-System--ATS-',
-    github_url: 'https://github.com/sukhsingh1313/AI-Powered-Resume-Screening-System--ATS-',
-    tech_stack: ['JavaScript', 'Node.js', 'AI/ML', 'Express', 'Tailwind CSS'],
+      'Digital library management web application designed for cataloging books, tracking lending cycles, and managing digital book archives.',
+    thumbnail_url: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=800&auto=format&fit=crop&q=80',
+    live_demo_url: 'https://mybooklab.onrender.com',
+    github_url: 'https://github.com/sukhsingh1313/MyBookLab',
+    tech_stack: ['Python', 'Django', 'Render'],
     featured: true,
     status: 'published',
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
   },
   {
-    id: '4',
-    title: 'AI Study Assistant Pro',
+    id: 'studypowerhub',
+    title: 'StudyPowerHub',
     description:
-      'Interactive learning assistant platform featuring automated note summarization, quiz generation, practice question solver, and study session trackers.',
+      'AI-driven learning portal with PDF integration enabling students to extract summaries, generate flashcards, and query documents with AI.',
     thumbnail_url: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&auto=format&fit=crop&q=80',
-    live_demo_url: 'https://github.com/sukhsingh1313/ai-study-assistant-pro',
-    github_url: 'https://github.com/sukhsingh1313/ai-study-assistant-pro',
-    tech_stack: ['PHP', 'Blade', 'Laravel', 'OpenAI API', 'Tailwind CSS'],
+    live_demo_url: 'https://studypowerhub.vercel.app',
+    github_url: 'https://github.com/sukhsingh1313/StudyPowerHub',
+    tech_stack: ['Next.js', 'Tailwind', 'Gemini API'],
     featured: true,
     status: 'published',
     created_at: new Date().toISOString(),
@@ -66,7 +66,7 @@ const fallbackProjects: Project[] = [
 ];
 
 export function FeaturedProjects({ initialProjects }: FeaturedProjectsProps) {
-  const projects = initialProjects && initialProjects.length > 0 ? initialProjects : fallbackProjects;
+  const projects = initialProjects && initialProjects.length > 0 ? initialProjects : fallbackFeaturedProjects;
 
   return (
     <section className="py-16 md:py-24 border-t border-slate-800/60 bg-slate-950 relative">
@@ -79,10 +79,10 @@ export function FeaturedProjects({ initialProjects }: FeaturedProjectsProps) {
               <span>Production Showcase</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-              Live Projects & Demos
+              Featured Software Projects
             </h2>
             <p className="text-sm sm:text-base text-slate-400">
-              Explore open-source platforms, SaaS applications, and real-world tools built with modern full-stack web tech.
+              Explore real-world platforms, web applications, and AI systems built by Sukhchain Singh.
             </p>
           </div>
           <Link

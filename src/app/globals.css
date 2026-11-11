@@ -88,6 +88,10 @@ html[data-theme="minimal-light"] {
   --accent-secondary: #0284c7;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
